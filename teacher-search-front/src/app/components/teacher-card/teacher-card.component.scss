@@ -1,0 +1,28 @@
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.teacher-card {
+  animation: 0.5s ease-out 0s 1 slideInFromLeft;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &__photo {
+    height: 4rem;
+  }
+
+  &__info {
+    flex-basis: 15rem;
+  }
+
+  &__name {
+    font-weight: bold;
+  }
+}
+

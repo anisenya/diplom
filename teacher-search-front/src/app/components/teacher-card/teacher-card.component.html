@@ -1,0 +1,9 @@
+<mat-card class="teacher-card">
+  <img class="teacher-card__photo" [src]="teacher.avatarUrl"/>
+  <div class="teacher-card__info">
+    <p class="teacher-card__name">{{teacher.secondName + ' ' + teacher.firstName + ' ' + teacher.lastName}}</p>
+    <p class="teacher-card__status">Статус: {{teacher.status}}</p>
+    <p class="teacher-card__housing">№ корпуса: {{teacher.housingNumber}}</p>
+    <p class="teacher-card__cabinet">Аудитория: {{teacher.cabinetNumber}}</p>
+  </div>
+</mat-card>

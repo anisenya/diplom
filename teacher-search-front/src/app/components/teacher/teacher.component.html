@@ -1,0 +1,46 @@
+<div class="teacher-container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="toolbar-container">
+      <span class="toolbar-container__title">Личный кабинет</span>
+      <div class="toolbar-container__actions">
+        <button class="toolbar-container__actions btn" mat-button (click)="changeCabinetVisible()">
+          <mat-icon *ngIf="isCabinetOpen">keyboard_arrow_left</mat-icon>
+          <mat-icon *ngIf="!isCabinetOpen">edit</mat-icon>
+        </button>
+        <button class="toolbar-container__actions btn" mat-button (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <cabinet *ngIf="isCabinetOpen"></cabinet>
+  <form *ngIf="!isCabinetOpen" [formGroup]="teacherStatus" class="teacher-container__status-items" >
+    <mat-form-field class="teacher-container__status-item">
+      <mat-label>Выберите статус</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of statuses" [value]="status.value">
+          {{status.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="teacher-container__place-container">
+      <mat-form-field class="teacher-container__place-number">
+        <mat-label>№ к.</mat-label>
+        <mat-select formControlName="housingNumber">
+          <mat-option value="">-</mat-option>
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="teacher-container__place-cabinet">
+        <input
+          matInput
+          placeholder="Номер аудитории"
+          formControlName="cabinetNumber">
+      </mat-form-field>
+    </div>
+    <button mat-flat-button color="primary" (click)="update()">Сохранить</button>
+  </form>
+</div>

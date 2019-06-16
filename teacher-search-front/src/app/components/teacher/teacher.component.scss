@@ -1,0 +1,37 @@
+.toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+
+  &__title {
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+  &__actions {
+    display: flex;
+    flex-basis: 7rem;
+    justify-content: space-around;
+    .btn {
+      min-width: 0;
+      padding: 0;
+    }
+  }
+}
+
+.teacher-container {
+  &__status-items {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 10px;
+  }
+  &__place-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__place-number {
+    width: 4rem;
+  }
+  &__place-cabinet {
+    width: 17rem;
+  }
+}

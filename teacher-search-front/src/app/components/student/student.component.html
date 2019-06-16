@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+  <mat-form-field class="search-field" *ngIf="isSearch">
+    <input matInput type="text" placeholder="Поиск" [formControl]="search">
+    <button mat-button matSuffix mat-icon-button (click)="changeSearchStatus()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-toolbar-row class="toolbar-container" *ngIf="!isSearch">
+    <span class="toolbar-container__title">Поиск преподавателя</span>
+    <div class="toolbar-container__actions">
+      <button class="toolbar-container__actions btn" mat-button (click)="changeSearchStatus()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button class="toolbar-container__actions btn" mat-button (click)="changeFiltersStatus()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+      <button class="toolbar-container__actions btn" mat-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="filters-container" [@openClose]="isFilters ? 'open' : 'closed'" >
+  <form [formGroup]="filters" class="filters-container__items" >
+      <mat-form-field class="filters-container__item">
+          <mat-label>Выберите факультет</mat-label>
+          <mat-select formControlName="department">
+            <mat-option [value]="''">-</mat-option>
+            <mat-option *ngFor="let faculty of facultys" [value]="faculty.value">
+              {{faculty.value}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+    <mat-form-field class="filters-container__item">
+      <mat-label>Выберите кафедру</mat-label>
+      <mat-select formControlName="faculty">
+        <mat-option [value]="''">-</mat-option>
+        <mat-option *ngFor="let department of departments" [value]="department.value">
+          {{department.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  </form>
+</div>
+<div class="teachers-container">
+  <teacher-card class="teachers-container__item" *ngFor="let teacher of (teachers$ | async)" [teacher]="teacher"></teacher-card>
+</div>
+<mat-paginator [length]="teacherCount$ | async"
+               [pageSize]="5"
+               #paginator
+               class="paginator"
+>
+</mat-paginator>

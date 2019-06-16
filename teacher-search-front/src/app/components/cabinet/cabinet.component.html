@@ -1,0 +1,31 @@
+<div class="cabinet-container">
+  <form class="" [formGroup]="authForm">
+    <div class="cabinet-container__update-password">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Логин"
+          formControlName="login"
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          placeholder="Пароль"
+          formControlName="password">
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="updatePassword()">Изменить пароль</button>
+    </div>
+  </form>
+  <div class="cabinet-container__update-avatar">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Ссылка на фотографию"
+        [formControl]="avatarUrl">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="updateAvatar()">Обновить фотографию</button>
+  </div>
+</div>
+

@@ -1,0 +1,12 @@
+.cabinet-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+
+  &__update-password,
+  &__update-avatar {
+    display: flex;
+    flex-direction: column;
+  }
+}

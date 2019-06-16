@@ -1,0 +1,86 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="toolbar-container">
+    <span class="toolbar-container__title">Администрирование</span>
+    <div class="toolbar-container__actions">
+      <button class="toolbar-container__actions btn" mat-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="editor-container">
+  <form class="editor-form" [formGroup]="editorForm" (ngSubmit)="addUser()">
+    <mat-form-field class="editor-form__item">
+      <input
+        matInput
+        placeholder="Логин"
+        formControlName="login">
+    </mat-form-field>
+    <mat-form-field class="editor-form__item">
+      <input
+        matInput
+        placeholder="Пароль"
+        formControlName="password">
+    </mat-form-field>
+    <mat-form-field class="editor-form__item">
+      <input
+        matInput
+        placeholder="Фамилия"
+        formControlName="secondName">
+    </mat-form-field>
+    <mat-form-field class="editor-form__item">
+      <input
+        matInput
+        placeholder="Имя"
+        formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field class="editor-form__item">
+      <input
+        matInput
+        placeholder="Отчество"
+        formControlName="lastName">
+    </mat-form-field>
+
+    <ng-container *ngIf="isTeacher">
+      <mat-form-field class="editor-form__item">
+        <mat-label>Выберите Факультет</mat-label>
+      <mat-select formControlName="faculty">
+          <mat-option *ngFor="let faculty of facultys" [value]="faculty.value">
+              {{faculty.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="editor-form__item">
+      <mat-label>Выберите Кафедру</mat-label>
+      <mat-select formControlName="department">
+          <mat-option *ngFor="let department of departments" [value]="department.value">
+              {{department.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </ng-container>
+
+
+    <mat-radio-group class="editor-form__radio" formControlName="role">
+      <mat-radio-button value="teacher">Преподаватель</mat-radio-button>
+      <mat-radio-button value="student">Студент</mat-radio-button>
+      <mat-radio-button value="moderator">Модератор</mat-radio-button>
+    </mat-radio-group>
+
+    <button class="editor-form__button" mat-flat-button color="primary" [disabled]="!editorForm.valid">Добавить</button>
+  </form>
+  <div class="users">
+    <mat-card class="users__item" *ngFor="let user of (users$ | async)">
+      <div class="users__info">
+        <p>Фамилия: {{ user.secondName }}</p>
+        <p>Имя: {{ user.firstName }}</p>
+        <p>Отчество: {{ user.lastName }}</p>
+        <p>Логин: {{ user.login }}</p>
+        <p>Роль: {{ user.role }}</p>
+      </div>
+      <div class="users__actions">
+        <mat-icon (click)="removeUser(user.login)">close</mat-icon>
+      </div>
+    </mat-card>
+  </div>
+</div>

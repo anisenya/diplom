@@ -1,0 +1,68 @@
+:host {
+  .search-container,
+  .toolbar-container {
+    padding: 0;
+  }
+  .search-field {
+    width: 100%;
+    font-size: 14px;
+  }
+  .toolbar-container {
+    display: flex;
+    justify-content: space-around;
+
+    &__title {
+      font-size: 1.1rem;
+    }
+    &__actions {
+      display: flex;
+      flex-basis: 7rem;
+      justify-content: space-around;
+      .btn {
+        min-width: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .filters-container {
+    display: flex;
+    font-size: 15px;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #636363;
+
+    ::ng-deep {
+      position: fixed;
+      width: 100%;
+    }
+
+    &__items,
+    &__item {
+      width: 100%;
+    }
+
+    &__items {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 10px 0 10px;
+    }
+  }
+
+  .teachers-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto;
+    height: 80vh;
+    &__item {
+      padding-top: 10px;
+    }
+  }
+
+  .paginator {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
